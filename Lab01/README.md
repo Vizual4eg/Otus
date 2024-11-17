@@ -28,7 +28,7 @@ P2P сети строились по схеме: \
 Где: \
 X - ряд коммутаторов. 1 - Spine, 2 - Leaf \
 Y - Номер коммутатора в ряду \
-Z - Номер Downling/Uplink коммутатора
+Z - Номер Downlink/Uplink коммутатора
 
 |Device|Interface|Vlan/IP Address/Mask|
 |---|---|---|
