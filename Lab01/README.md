@@ -90,3 +90,13 @@ Z - Номер Downlink/Uplink коммутатора
 |---|---|---|---|
 |255|MGMT|MGMT-01: Eth1-5| Для подключения к коммутаторам внутри фабрики с коммутатора MGMT-01. Сеть 10.255.1.0/24|
 |11|Clients|Leaf-01,02,03:Eth1|Клиентское подключение|
+
+### Конфигурация портов
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+### Проверка IP связности
