@@ -96,10 +96,12 @@ Z - Номер Downlink/Uplink коммутатора
 <details>
 <summary>Spine-01</summary>
 <br>
+<p>
 interface Ethernet1 \
    description --- Leaf-01 --- \
    no switchport \
    ip address 10.11.1.1/30 \
+</p>
 <br>
 interface Ethernet2 \
    description --- Leaf-02 --- \
