@@ -59,6 +59,7 @@ Z - Номер Downling/Uplink коммутатора
 
 |Device|Interface|IP Address/Mask|
 |---|---|---|
+|Leaf-01|Ethernet1|Access Vlan 11|
 |Leaf-01|Ethernet7|10.11.1.2/30|
 |Leaf-01|Ethernet8|10.12.1.2/30|
 |Leaf-01|Loopback1|10.21.255.1/32|
@@ -67,19 +68,21 @@ Z - Номер Downling/Uplink коммутатора
 
 |Device|Interface|IP Address/Mask|
 |---|---|---|
-|Leaf-01|Ethernet7|10.11.2.2/30|
-|Leaf-01|Ethernet8|10.12.2.2/30|
-|Leaf-01|Loopback1|10.22.255.1/32|
-|Leaf-01|Loopback2|10.202.1.1/32|
-|Leaf-01|Management1|10.255.1.12/24|
+|Leaf-02|Ethernet1|Access Vlan 11|
+|Leaf-02|Ethernet7|10.11.2.2/30|
+|Leaf-02|Ethernet8|10.12.2.2/30|
+|Leaf-02|Loopback1|10.22.255.1/32|
+|Leaf-02|Loopback2|10.202.1.1/32|
+|Leaf-02|Management1|10.255.1.12/24|
 
 |Device|Interface|IP Address/Mask|
 |---|---|---|
-|Leaf-01|Ethernet7|10.11.3.2/30|
-|Leaf-01|Ethernet8|10.12.3.2/30|
-|Leaf-01|Loopback1|10.23.255.1/32|
-|Leaf-01|Loopback2|10.203.1.1/32|
-|Leaf-01|Management1|10.255.1.13/24|
+|Leaf-03|Ethernet1|Access Vlan 11|
+|Leaf-03|Ethernet7|10.11.3.2/30|
+|Leaf-03|Ethernet8|10.12.3.2/30|
+|Leaf-03|Loopback1|10.23.255.1/32|
+|Leaf-03|Loopback2|10.203.1.1/32|
+|Leaf-03|Management1|10.255.1.13/24|
 
 ### VLAN Таблица
 
