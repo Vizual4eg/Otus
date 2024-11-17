@@ -120,34 +120,151 @@ interface Loopback255 <br>
    ip address 10.10.255.1/32 <br>
 <br>
 interface Management1 <br>
-   vrf MGMT \n\r
+   vrf MGMT <br>
    ip address 10.255.1.1/24 <br>
 </details>
 
 <details>
 <summary>Spine-02</summary>
 <br>
+interface Ethernet1 <br>
+   description --- Leaf-01 --- <br>
+   no switchport <br>
+   ip address 10.12.1.1/30 <br>
+<br>
+interface Ethernet2 <br>
+   description --- Leaf-02 --- <br>
+   no switchport <br>
+   ip address 10.12.2.1/30 <br>
+<br>
+interface Ethernet3 <br>
+   description --- Leaf-03 --- <br>
+   no switchport <br>
+   ip address 10.12.3.1/30 <br>
+<br>
+interface Loopback0 <br>
+   description --- For Routing --- <br>
+   ip address 10.12.255.1/32 <br>
+<br>
+interface Loopback255 <br>
+   description --- Rendezvous Point --- <br>
+   ip address 10.10.255.1/32 <br>
+<br>
+interface Management1 <br>
+   vrf MGMT <br>
+   ip address 10.255.1.2/24 <br>
 </details>
 
 <details>
 <summary>Leaf-01</summary>
 <br>
+interface Ethernet1 <br>
+   description --- Client --- <br>
+   switchport access vlan 11 <br>
+<br>
+interface Ethernet7 <br>
+   description --- Spine-01 --- <br>
+   no switchport <br>
+   ip address 10.11.1.2/30 <br>
+<br>
+interface Ethernet8 <br>
+   description --- Spine-02 --- <br>
+   no switchport <br>
+   ip address 10.12.1.2/30 <br>
+<br>
+interface Loopback0 <br>
+   description --- For Routing --- <br>
+   ip address 10.21.255.1/32 <br>
+<br>
+interface Loopback1 <br>
+   description --- VTEP Lo --- <br>
+   ip address 10.201.1.1/32 <br>
+<br>
+interface Management1 <br>
+   vrf MGMT <br>
+   ip address 10.255.1.11/24 <br>
 </details>
 
 <details>
 <summary>Leaf-02</summary>
 <br>
+interface Ethernet1 <br>
+   description --- Client --- <br>
+   switchport access vlan 11 <br>
+<br>
+interface Ethernet7 <br>
+   description --- Spine-01 --- <br>
+   no switchport <br>
+   ip address 10.11.2.2/30 <br>
+<br>
+interface Ethernet8 <br>
+   description --- Spine-02 --- <br>
+   no switchport <br>
+   ip address 10.12.2.2/30 <br>
+<br>
+interface Loopback0 <br>
+   description --- For Routing --- <br>
+   ip address 10.22.255.1/32 <br>
+<br>
+interface Loopback1 <br>
+   description --- VTEP Lo --- <br>
+   ip address 10.202.1.1/32 <br>
+<br>
+interface Management1 <br>
+   vrf MGMT <br>
+   ip address 10.255.1.12/24 <br>
 </details>
 
 <details>
 <summary>Leaf-03</summary>
 <br>
+interface Ethernet1 <br>
+   description --- Client --- <br>
+   switchport access vlan 11 <br>
+<br>
+interface Ethernet7 <br>
+   description --- Spine-01 --- <br>
+   no switchport <br>
+   ip address 10.11.3.2/30 <br>
+<br>
+interface Ethernet8 <br>
+   description --- Spine-02 --- <br>
+   no switchport <br>
+   ip address 10.12.3.2/30 <br>
+<br>
+interface Loopback0 <br>
+   description --- For Routing --- <br>
+   ip address 10.23.255.1/32 <br>
+<br>
+interface Loopback1 <br>
+   description --- VTEP Lo --- <br>
+   ip address 10.203.1.1/32 <br>
+<br>
+interface Management1 <br>
+   vrf MGMT <br>
+   ip address 10.255.1.13/24 <br>
 </details>
 
 <details>
-<summary>Leaf-03</summary>
+<summary>MGMT-01</summary>
 <br>
-
+interface Ethernet1 <br>
+   switchport access vlan 255 <br>
+<br>
+interface Ethernet2 <br>
+   switchport access vlan 255 <br>
+<br>
+interface Ethernet3 <br>
+   switchport access vlan 255 <br>
+<br>
+interface Ethernet4 <br>
+   switchport access vlan 255 <br>
+<br>
+interface Ethernet5 <br>
+   switchport access vlan 255 <br>
+<br>
+interface Vlan255 <br>
+   ip address 10.255.1.254/24 <br>
 </details>
 
 ### Проверка IP связности
