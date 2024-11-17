@@ -96,34 +96,32 @@ Z - Номер Downlink/Uplink коммутатора
 <details>
 <summary>Spine-01</summary>
 <br>
-<p>
-interface Ethernet1 \
-   description --- Leaf-01 --- \
-   no switchport \
-   ip address 10.11.1.1/30 \
-</p>
+interface Ethernet1 <br>
+   description --- Leaf-01 --- <br>
+   no switchport <br>
+   ip address 10.11.1.1/30 <br>
 <br>
-interface Ethernet2 \
-   description --- Leaf-02 --- \
-   no switchport \
-   ip address 10.11.2.1/30 \
+interface Ethernet2 <br>
+   description --- Leaf-02 --- <br>
+   no switchport <br>
+   ip address 10.11.2.1/30 <br>
 <br>
-interface Ethernet3 \
-   description --- Leaf-03 --- \
-   no switchport \
-   ip address 10.11.3.1/30 \
+interface Ethernet3 <br>
+   description --- Leaf-03 --- <br>
+   no switchport <br>
+   ip address 10.11.3.1/30 <br>
 <br>
-interface Loopback0 \
-   description --- For Routing --- \
-   ip address 10.11.255.1/32 \
+interface Loopback0 <br>
+   description --- For Routing --- <br>
+   ip address 10.11.255.1/32 <br>
 <br>
-interface Loopback255 \
-   description --- Rendezvous Point --- \
-   ip address 10.10.255.1/32 \
+interface Loopback255 <br>
+   description --- Rendezvous Point --- <br>
+   ip address 10.10.255.1/32 <br>
 <br>
-interface Management1 \
-   vrf MGMT \
-   ip address 10.255.1.1/24 \
+interface Management1 <br>
+   vrf MGMT \n\r
+   ip address 10.255.1.1/24 <br>
 </details>
 
 <details>
