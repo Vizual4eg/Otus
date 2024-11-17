@@ -269,6 +269,8 @@ interface Vlan255 <br>
 
 ### Проверка IP связности
 
+### Spine-01
+
 ``` Spine-01
 #### Leaf-01 ####
 Spine-01#ping 10.11.1.2
@@ -305,6 +307,8 @@ PING 10.11.3.2 (10.11.3.2) 72(100) bytes of data.
 5 packets transmitted, 5 received, 0% packet loss, time 30ms
 rtt min/avg/max/mdev = 3.622/4.789/6.651/1.146 ms, ipg/ewma 7.502/4.619 ms
 ```
+
+### Spine-02
 
 ``` Spine-02
 #### Leaf-01 ####
