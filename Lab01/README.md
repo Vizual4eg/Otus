@@ -3,6 +3,22 @@
 ## Цели работ
 
 1. Собрать топологию CLOS, как на схеме:\
-![image](./DC%20SCheme.avif)
+![image](./DCScheme.avif)
 2. Распределить адресное пространство для Underlay сети
 3. Зафиксировать план работ и адресное пространство
+
+### Топология CLOS
+
+Реализованная схема:\
+![image](./MyScheme.png)
+
+### Адресное пространство
+
+|Device|Interface|IP Address/Mask|
+|---|---|---|
+|Leaf-01|Ethernet1|10.11.1.1/30|
+|Leaf-01|Ethernet2|10.11.2.1/30|
+|Leaf-01|Ethernet3|10.13.3.1/30|
+|Leaf-01|Loopback1|10.11.255.1/32|
+|Leaf-01|Loopback255|10.10.255.1/32|
+|Leaf-01|Management1|10.255.1.1/24|
