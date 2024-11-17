@@ -23,7 +23,7 @@
 |MGMT-01|Ethernet3|Access Vlan 255|
 |MGMT-01|Ethernet4|Access Vlan 255|
 |MGMT-01|Ethernet5|Access Vlan 255|
-|MGMT-01|Management1|10.255.1.254/24|
+|MGMT-01|Vlan 255|10.255.1.254/24|
 
 |Device|Interface|IP Address/Mask|
 |---|---|---|
