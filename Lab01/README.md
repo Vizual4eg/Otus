@@ -16,6 +16,20 @@
 
 ### Адресное пространство
 
+Пространство выделялось из сети 10.0.0.0/8:
+P2P сети строились по схеме:
+10.XY.Z.0/30
+
+Лупбеки исходя их схемы:
+10.XY.255.1/32 Для маршрутизации
+10.10.255.1/32 Для точки рандеву
+10.20Y.1.1/32 Для VTEP лупбека на Leaf коммутаторах
+
+Где:
+X - ряд коммутаторов. 1 - Spine, 2 - Leaf
+Y - Номер коммутатора в ряду
+Z - Номер Downling/Uplink коммутатора
+
 |Device|Interface|Vlan/IP Address/Mask|
 |---|---|---|
 |MGMT-01|Ethernet1|Access Vlan 255|
@@ -48,7 +62,7 @@
 |Leaf-01|Ethernet7|10.11.1.2/30|
 |Leaf-01|Ethernet8|10.12.1.2/30|
 |Leaf-01|Loopback1|10.21.255.1/32|
-|Leaf-01|Loopback2|10.101.1.1/32|
+|Leaf-01|Loopback2|10.201.1.1/32|
 |Leaf-01|Management1|10.255.1.11/24|
 
 |Device|Interface|IP Address/Mask|
@@ -56,7 +70,7 @@
 |Leaf-01|Ethernet7|10.11.2.2/30|
 |Leaf-01|Ethernet8|10.12.2.2/30|
 |Leaf-01|Loopback1|10.22.255.1/32|
-|Leaf-01|Loopback2|10.102.1.1/32|
+|Leaf-01|Loopback2|10.202.1.1/32|
 |Leaf-01|Management1|10.255.1.12/24|
 
 |Device|Interface|IP Address/Mask|
@@ -64,7 +78,7 @@
 |Leaf-01|Ethernet7|10.11.3.2/30|
 |Leaf-01|Ethernet8|10.12.3.2/30|
 |Leaf-01|Loopback1|10.23.255.1/32|
-|Leaf-01|Loopback2|10.103.1.1/32|
+|Leaf-01|Loopback2|10.203.1.1/32|
 |Leaf-01|Management1|10.255.1.13/24|
 
 ### VLAN Таблица
