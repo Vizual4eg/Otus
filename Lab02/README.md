@@ -51,6 +51,35 @@ ip prefix-list PL_OSPF_OUT seq 10 permit 10.1X.255.1/32<br>
 Где X номер Spine коммутатора в схеме <br>
 </details>
 
+<details>
+<summary>Leaf-s's</summary>
+<br>
+router ospf 1 <br>
+   passive-interface default <br>
+   no passive-interface Ethernet7 <br>
+   no passive-interface Ethernet8 <br>
+   redistribute connected route-map RM_OSPF_OUT <br>
+   max-lsa 12000 <br>
+<br>
+interface Ethernet7 <br>
+   description --- Spine-01 --- <br>
+   ip ospf neighbor bfd <br>
+   ip ospf network point-to-point <br>
+   ip ospf area 0.0.0.10 <br>
+<br>
+interface Ethernet8 <br>
+   description --- Spine-02 --- <br>
+   ip ospf neighbor bfd <br>
+   ip ospf network point-to-point <br>
+   ip ospf area 0.0.0.10 <br>
+<br>
+route-map RM_OSPF_OUT permit 1 <br>
+   match ip address prefix-list PL_OSPF_OUT <br>
+<br>
+ip prefix-list PL_OSPF_OUT seq 10 permit 10.2X.255.1/32<br>
+Где X номер Leaf коммутатора в схеме <br>
+</details>
+
 ### Проверка IP связности
 
 ### Spine-01
