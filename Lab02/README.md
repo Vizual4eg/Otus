@@ -52,7 +52,7 @@ ip prefix-list PL_OSPF_OUT seq 10 permit 10.1X.255.1/32<br>
 </details>
 
 <details>
-<summary>Leaf-s's</summary>
+<summary>Leaf's</summary>
 <br>
 router ospf 1 <br>
    passive-interface default <br>
@@ -85,78 +85,98 @@ ip prefix-list PL_OSPF_OUT seq 10 permit 10.2X.255.1/32<br>
 ### Spine-01
 
 ``` Spine-01
-#### Leaf-01 ####
-Spine-01#ping 10.11.1.2
-PING 10.11.1.2 (10.11.1.2) 72(100) bytes of data.
-80 bytes from 10.11.1.2: icmp_seq=1 ttl=64 time=4.17 ms
-80 bytes from 10.11.1.2: icmp_seq=2 ttl=64 time=3.61 ms
-80 bytes from 10.11.1.2: icmp_seq=3 ttl=64 time=3.77 ms
-80 bytes from 10.11.1.2: icmp_seq=4 ttl=64 time=11.0 ms
---- 10.11.1.2 ping statistics ---
-5 packets transmitted, 4 received, 20% packet loss, time 41ms
-rtt min/avg/max/mdev = 3.618/5.650/11.032/3.114 ms, pipe 2, ipg/ewma 10.435/4.935 ms
+Spine-01#sh ip ospf neighbor
+Neighbor ID     Instance VRF      Pri State                  Dead Time   Address         Interface
+10.201.1.1      1        default  0   FULL                   00:00:31    10.11.1.2       Ethernet1
+10.202.1.1      1        default  0   FULL                   00:00:29    10.11.2.2       Ethernet2
+10.203.1.1      1        default  0   FULL                   00:00:33    10.11.3.2       Ethernet3
 
-#### Leaf-02 ####
-Spine-01#ping 10.11.2.2 
-PING 10.11.2.2 (10.11.2.2) 72(100) bytes of data.
-80 bytes from 10.11.2.2: icmp_seq=1 ttl=64 time=4.77 ms
-80 bytes from 10.11.2.2: icmp_seq=2 ttl=64 time=8.12 ms
-80 bytes from 10.11.2.2: icmp_seq=3 ttl=64 time=5.20 ms
-80 bytes from 10.11.2.2: icmp_seq=4 ttl=64 time=5.36 ms
-80 bytes from 10.11.2.2: icmp_seq=5 ttl=64 time=8.73 ms
---- 10.11.2.2 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 34ms
-rtt min/avg/max/mdev = 4.773/6.438/8.736/1.649 ms, ipg/ewma 8.538/5.654 ms
+Spine-01#sh bfd peers
+VRF name: default
+-----------------
+DstAddr        MyDisc    YourDisc  Interface/Transport    Type          LastUp
+---------- ----------- ----------- -------------------- ------- ---------------
+10.11.1.2  1559515881  3988456240        Ethernet1(13)  normal  11/30/24 17:07
+10.11.2.2  4099456841  2216118393        Ethernet2(14)  normal  11/30/24 17:20
+10.11.3.2    90821037  3674536677        Ethernet3(15)  normal  11/30/24 17:21
 
-#### Leaf-03 ####
-Spine-01#ping 10.11.3.2 Leaf-03
-PING 10.11.3.2 (10.11.3.2) 72(100) bytes of data.
-80 bytes from 10.11.3.2: icmp_seq=1 ttl=64 time=4.47 ms
-80 bytes from 10.11.3.2: icmp_seq=2 ttl=64 time=6.65 ms
-80 bytes from 10.11.3.2: icmp_seq=3 ttl=64 time=3.72 ms
-80 bytes from 10.11.3.2: icmp_seq=4 ttl=64 time=3.62 ms
-80 bytes from 10.11.3.2: icmp_seq=5 ttl=64 time=5.47 ms
---- 10.11.3.2 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 30ms
-rtt min/avg/max/mdev = 3.622/4.789/6.651/1.146 ms, ipg/ewma 7.502/4.619 ms
+   LastDown            LastDiag    State
+-------------- ------------------- -----
+         NA       No Diagnostic       Up
+         NA       No Diagnostic       Up
+         NA       No Diagnostic       Up
+
+Spine-01#sh ip route  ospf
+ O        10.12.1.0/30 [110/20] via 10.11.1.2, Ethernet1
+ O        10.12.2.0/30 [110/20] via 10.11.2.2, Ethernet2
+ O        10.12.3.0/30 [110/20] via 10.11.3.2, Ethernet3
+ O E2     10.12.255.1/32 [110/1] via 10.11.1.2, Ethernet1
+                                 via 10.11.2.2, Ethernet2
+                                 via 10.11.3.2, Ethernet3
+ O E2     10.21.255.1/32 [110/1] via 10.11.1.2, Ethernet1
+ O E2     10.22.255.1/32 [110/1] via 10.11.2.2, Ethernet2
+ O E2     10.23.255.1/32 [110/1] via 10.11.3.2, Ethernet3
+
+### PING ###
+Spine-01#ping 10.21.255.1 repeat 1 ### Leaf-01
+80 bytes from 10.21.255.1: icmp_seq=1 ttl=64 time=4.53 ms
+
+Spine-01#ping 10.22.255.1 repeat 1 ### Leaf-02
+80 bytes from 10.22.255.1: icmp_seq=1 ttl=64 time=5.31 ms
+
+Spine-01#ping 10.23.255.1 repeat 1 ### Leaf-03
+80 bytes from 10.23.255.1: icmp_seq=1 ttl=64 time=3.80 ms
+
+Spine-01#ping 10.12.255.1 repeat 1 ### Spine-01
+80 bytes from 10.12.255.1: icmp_seq=1 ttl=63 time=9.94 ms
 ```
 
 ### Spine-02
 
 ``` Spine-02
-#### Leaf-01 ####
-Spine-02#ping 10.12.1.2
-PING 10.12.1.2 (10.12.1.2) 72(100) bytes of data.
-80 bytes from 10.12.1.2: icmp_seq=1 ttl=64 time=48.0 ms
-80 bytes from 10.12.1.2: icmp_seq=2 ttl=64 time=44.9 ms
-80 bytes from 10.12.1.2: icmp_seq=3 ttl=64 time=42.0 ms
-80 bytes from 10.12.1.2: icmp_seq=4 ttl=64 time=38.1 ms
-80 bytes from 10.12.1.2: icmp_seq=5 ttl=64 time=34.7 ms
---- 10.12.1.2 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 45ms
-rtt min/avg/max/mdev = 34.745/41.580/48.039/4.728 ms, pipe 5, ipg/ewma 11.416/44.460 ms
+Spine-02#sh ip ospf neighbor
+Neighbor ID     Instance VRF      Pri State                  Dead Time   Address         Interface
+10.201.1.1      1        default  0   FULL                   00:00:36    10.12.1.2       Ethernet1
+10.202.1.1      1        default  0   FULL                   00:00:30    10.12.2.2       Ethernet2
+10.203.1.1      1        default  0   FULL                   00:00:29    10.12.3.2       Ethernet3
 
-#### Leaf-02 ####
-Spine-02#ping 10.12.2.2
-PING 10.12.2.2 (10.12.2.2) 72(100) bytes of data.
-80 bytes from 10.12.2.2: icmp_seq=1 ttl=64 time=30.4 ms
-80 bytes from 10.12.2.2: icmp_seq=2 ttl=64 time=27.0 ms
-80 bytes from 10.12.2.2: icmp_seq=3 ttl=64 time=18.8 ms
-80 bytes from 10.12.2.2: icmp_seq=4 ttl=64 time=15.3 ms
-80 bytes from 10.12.2.2: icmp_seq=5 ttl=64 time=5.36 ms
---- 10.12.2.2 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 137ms
-rtt min/avg/max/mdev = 5.369/19.419/30.495/8.885 ms, pipe 2, ipg/ewma 34.430/24.294 ms
 
-#### Leaf-03 ####
-Spine-02#ping 10.12.3.2
-PING 10.12.3.2 (10.12.3.2) 72(100) bytes of data.
-80 bytes from 10.12.3.2: icmp_seq=1 ttl=64 time=98.9 ms
-80 bytes from 10.12.3.2: icmp_seq=2 ttl=64 time=66.8 ms
-80 bytes from 10.12.3.2: icmp_seq=3 ttl=64 time=76.6 ms
-80 bytes from 10.12.3.2: icmp_seq=4 ttl=64 time=63.0 ms
-80 bytes from 10.12.3.2: icmp_seq=5 ttl=64 time=5.42 ms
---- 10.12.3.2 ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 183ms
-rtt min/avg/max/mdev = 5.426/62.182/98.956/31.003 ms, pipe 4, ipg/ewma 45.819/78.512 ms
+Spine-02#sh bfd peers
+VRF name: default
+-----------------
+DstAddr        MyDisc    YourDisc  Interface/Transport    Type          LastUp
+---------- ----------- ----------- -------------------- ------- ---------------
+10.12.1.2  2104791323  1740865348        Ethernet1(13)  normal  11/30/24 17:15
+10.12.2.2  3371597205  2221587133        Ethernet2(14)  normal  11/30/24 17:20
+10.12.3.2  1701472467  2067415280        Ethernet3(15)  normal  11/30/24 17:21
+
+   LastDown            LastDiag    State
+-------------- ------------------- -----
+         NA       No Diagnostic       Up
+         NA       No Diagnostic       Up
+         NA       No Diagnostic       Up
+
+Spine-02#sh ip route ospf
+ O        10.11.1.0/30 [110/20] via 10.12.1.2, Ethernet1
+ O        10.11.2.0/30 [110/20] via 10.12.2.2, Ethernet2
+ O        10.11.3.0/30 [110/20] via 10.12.3.2, Ethernet3
+ O E2     10.11.255.1/32 [110/1] via 10.12.1.2, Ethernet1
+                                 via 10.12.2.2, Ethernet2
+                                 via 10.12.3.2, Ethernet3
+ O E2     10.21.255.1/32 [110/1] via 10.12.1.2, Ethernet1
+ O E2     10.22.255.1/32 [110/1] via 10.12.2.2, Ethernet2
+ O E2     10.23.255.1/32 [110/1] via 10.12.3.2, Ethernet3
+
+### PING ###
+Spine-02#ping 10.21.255.1  repeat 1 ### Leaf-01
+80 bytes from 10.21.255.1: icmp_seq=1 ttl=64 time=5.24 ms
+
+Spine-02#ping 10.22.255.1  repeat 1 ### Leaf-02
+80 bytes from 10.22.255.1: icmp_seq=1 ttl=64 time=4.96 ms
+ 
+Spine-02#ping 10.23.255.1  repeat 1 ### Leaf-03
+80 bytes from 10.23.255.1: icmp_seq=1 ttl=64 time=6.06 ms
+
+Spine-02#ping 10.11.255.1  repeat 1 ### Spine-01
+80 bytes from 10.11.255.1: icmp_seq=1 ttl=63 time=8.75 ms
 ```
