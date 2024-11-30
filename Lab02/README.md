@@ -21,6 +21,7 @@
 <summary>Spine's</summary>
 <br>
 router ospf 1 <br>
+   router-id 10.1X.255.1 <br>
    passive-interface default <br>
    no passive-interface Ethernet1 <br>
    no passive-interface Ethernet2 <br>
@@ -57,6 +58,7 @@ ip prefix-list PL_OSPF_OUT seq 10 permit 10.1X.255.1/32<br>
 <summary>Leaf's</summary>
 <br>
 router ospf 1 <br>
+   router-id 10.2Y.255.1 <br>
    passive-interface default <br>
    no passive-interface Ethernet7 <br>
    no passive-interface Ethernet8 <br>
@@ -78,8 +80,8 @@ interface Ethernet8 <br>
 route-map RM_OSPF_OUT permit 1 <br>
    match ip address prefix-list PL_OSPF_OUT <br>
 <br>
-ip prefix-list PL_OSPF_OUT seq 10 permit 10.2X.255.1/32<br>
-Где X номер Leaf коммутатора в схеме <br>
+ip prefix-list PL_OSPF_OUT seq 10 permit 10.2Y.255.1/32<br>
+Где Y номер Leaf коммутатора в схеме <br>
 </details>
 
 ### Проверка IP связности
@@ -89,9 +91,9 @@ ip prefix-list PL_OSPF_OUT seq 10 permit 10.2X.255.1/32<br>
 ``` Spine-01
 Spine-01#sh ip ospf neighbor
 Neighbor ID     Instance VRF      Pri State                  Dead Time   Address         Interface
-10.201.1.1      1        default  0   FULL                   00:00:31    10.11.1.2       Ethernet1
-10.202.1.1      1        default  0   FULL                   00:00:29    10.11.2.2       Ethernet2
-10.203.1.1      1        default  0   FULL                   00:00:33    10.11.3.2       Ethernet3
+10.21.255.1      1        default  0   FULL                   00:00:31    10.11.1.2       Ethernet1
+10.22.255.1      1        default  0   FULL                   00:00:29    10.11.2.2       Ethernet2
+10.23.255.1      1        default  0   FULL                   00:00:33    10.11.3.2       Ethernet3
 
 Spine-01#sh bfd peers
 VRF name: default
@@ -142,9 +144,9 @@ Spine-01#ping 10.12.255.1 repeat 1
 ``` Spine-02
 Spine-02#sh ip ospf neighbor
 Neighbor ID     Instance VRF      Pri State                  Dead Time   Address         Interface
-10.201.1.1      1        default  0   FULL                   00:00:36    10.12.1.2       Ethernet1
-10.202.1.1      1        default  0   FULL                   00:00:30    10.12.2.2       Ethernet2
-10.203.1.1      1        default  0   FULL                   00:00:29    10.12.3.2       Ethernet3
+10.21.255.1      1        default  0   FULL                   00:00:36    10.12.1.2       Ethernet1
+10.22.255.1      1        default  0   FULL                   00:00:30    10.12.2.2       Ethernet2
+10.23.255.1      1        default  0   FULL                   00:00:29    10.12.3.2       Ethernet3
 
 
 Spine-02#sh bfd peers
