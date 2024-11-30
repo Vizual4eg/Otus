@@ -119,17 +119,21 @@ Spine-01#sh ip route  ospf
  O E2     10.22.255.1/32 [110/1] via 10.11.2.2, Ethernet2
  O E2     10.23.255.1/32 [110/1] via 10.11.3.2, Ethernet3
 
-### PING ###
-Spine-01#ping 10.21.255.1 repeat 1 ### Leaf-01
+### LOOPBACK PING ###
+### Leaf-01
+Spine-01#ping 10.21.255.1 repeat 1 
 80 bytes from 10.21.255.1: icmp_seq=1 ttl=64 time=4.53 ms
 
-Spine-01#ping 10.22.255.1 repeat 1 ### Leaf-02
+### Leaf-02
+Spine-01#ping 10.22.255.1 repeat 1 
 80 bytes from 10.22.255.1: icmp_seq=1 ttl=64 time=5.31 ms
 
-Spine-01#ping 10.23.255.1 repeat 1 ### Leaf-03
+### Leaf-03
+Spine-01#ping 10.23.255.1 repeat 1 
 80 bytes from 10.23.255.1: icmp_seq=1 ttl=64 time=3.80 ms
 
-Spine-01#ping 10.12.255.1 repeat 1 ### Spine-01
+### Spine-02
+Spine-01#ping 10.12.255.1 repeat 1 
 80 bytes from 10.12.255.1: icmp_seq=1 ttl=63 time=9.94 ms
 ```
 
@@ -169,16 +173,20 @@ Spine-02#sh ip route ospf
  O E2     10.22.255.1/32 [110/1] via 10.12.2.2, Ethernet2
  O E2     10.23.255.1/32 [110/1] via 10.12.3.2, Ethernet3
 
-### PING ###
-Spine-02#ping 10.21.255.1  repeat 1 ### Leaf-01
+### LOOPBACK PING ###
+### Leaf-01
+Spine-02#ping 10.21.255.1  repeat 1 
 80 bytes from 10.21.255.1: icmp_seq=1 ttl=64 time=5.24 ms
 
-Spine-02#ping 10.22.255.1  repeat 1 ### Leaf-02
+### Leaf-02
+Spine-02#ping 10.22.255.1  repeat 1 
 80 bytes from 10.22.255.1: icmp_seq=1 ttl=64 time=4.96 ms
  
-Spine-02#ping 10.23.255.1  repeat 1 ### Leaf-03
+### Leaf-03
+Spine-02#ping 10.23.255.1  repeat 1 
 80 bytes from 10.23.255.1: icmp_seq=1 ttl=64 time=6.06 ms
 
-Spine-02#ping 10.11.255.1  repeat 1 ### Spine-01
+### Spine-01
+Spine-02#ping 10.11.255.1  repeat 1 
 80 bytes from 10.11.255.1: icmp_seq=1 ttl=63 time=8.75 ms
 ```
