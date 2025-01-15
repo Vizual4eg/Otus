@@ -85,4 +85,3 @@ ip prefix-list PL_OSPF_OUT seq 10 permit 10.2Y.255.1/32<br>
 </details>
 
 ### Настройка BGP в Overlay
-
