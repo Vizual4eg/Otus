@@ -122,8 +122,6 @@ DstAddr        MyDisc   YourDisc  Interface/Transport    Type           LastUp
 
 
 Spine-02#sh ip route bgp
-
-VRF: default
  B I      10.21.255.1/32 [200/0] via 10.12.1.2, Ethernet1
  B I      10.22.255.1/32 [200/0] via 10.12.2.2, Ethernet2
  B I      10.23.255.1/32 [200/0] via 10.12.3.2, Ethernet3
