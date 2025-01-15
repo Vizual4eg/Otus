@@ -14,13 +14,9 @@
 
 ![image](./MyScheme_OSPF.png)
 
-
-
 Реализованная схема BGP EVPN:
 
 ![image](./MyScheme_BGP_EVPN.png)
-
-
 
 ### [Адресное Пространство](/Lab01/README.md#%D0%B0%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%BE%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE)
 
@@ -129,7 +125,6 @@ router bgp 65099 <br>
     Где Y номер Leaf в схеме<br>
 </details>
 
-
 ### Настройка VXLAN интерфейса на Leaf
 
 interface Vxlan1
@@ -140,13 +135,15 @@ interface Vxlan1
 
 ### Таблица VLAN и VNI
 
-<table><tr><td>Vlan Name</td><td>Vlan ID</td><td>VNI</td><tr><td>Customer-01</td><td>1001</td><td>10001</td></table>
+|Vlan Name|Vlan ID|VNI|
+|---|---|---|
+|Customer-01|1001|10001|
 
 ### BGP EVPN связность
 
 #### Leaf-01
 
-~~~
+``` Leaf-01
 Leaf-01#sh bgp evpn summary
 BGP summary information for VRF default
 Router identifier 10.201.1.1, local AS number 65001
@@ -154,11 +151,11 @@ Neighbor Status Codes: m - Under maintenance
   Neighbor    V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
   10.11.255.1 4 65000             54        54    0    0 00:30:40 Estab   2      2
   10.12.255.1 4 65000             30        35    0    0 00:13:33 Estab   2      2
-~~~
+```
 
 #### Leaf-02
 
-~~~
+``` Leaf-02
 Leaf-02#sh bgp evpn summary
 BGP summary information for VRF default
 Router identifier 10.202.1.1, local AS number 65002
@@ -166,11 +163,11 @@ Neighbor Status Codes: m - Under maintenance
   Neighbor    V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
   10.11.255.1 4 65000             45        50    0    0 00:27:39 Estab   2      2
   10.12.255.1 4 65000             31        34    0    0 00:14:47 Estab   2      2
-~~~
+```
 
 #### Leaf-03
 
-~~~
+``` Leaf-03
 Leaf-03#sh bgp evpn summary
 BGP summary information for VRF default
 Router identifier 10.203.1.1, local AS number 65003
@@ -178,11 +175,11 @@ Neighbor Status Codes: m - Under maintenance
   Neighbor    V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
   10.11.255.1 4 65000             31        32    0    0 00:13:12 Estab   2      2
   10.12.255.1 4 65000             32        35    0    0 00:13:12 Estab   2      2
-~~~
+```
 
 #### Spine-01
 
-~~~
+``` Spine-01
 Spine-01#sh bgp evpn summary
 BGP summary information for VRF default
 Router identifier 10.11.255.1, local AS number 65000
@@ -191,11 +188,11 @@ Neighbor Status Codes: m - Under maintenance
   10.21.255.1 4 65001             57        56    0    0 00:33:09 Estab   1      1
   10.22.255.1 4 65002             51        47    0    0 00:28:53 Estab   1      1
   10.23.255.1 4 65003             34        32    0    0 00:14:07 Estab   1      1
-~~~
+```
 
 #### Spine-02
 
-~~~
+``` Spine-02
 Spine-02#sh bgp evpn summary
 BGP summary information for VRF default
 Router identifier 10.12.255.1, local AS number 65000
@@ -204,13 +201,13 @@ Neighbor Status Codes: m - Under maintenance
   10.21.255.1 4 65001             38        34    0    0 00:16:35 Estab   1      1
   10.22.255.1 4 65002             37        34    0    0 00:16:35 Estab   1      1
   10.23.255.1 4 65003             36        34    0    0 00:14:40 Estab   1      1
-~~~
+```
 
 ### Проверка связности между ПК в VLAN 1001
 
-#### PC-01:
+#### PC-01
 
-~~~
+``` PC-01
 NAME   IP/MASK              GATEWAY
 PC-01  192.168.1.1/24       192.168.1.254
 
@@ -226,12 +223,11 @@ PC-01> ping 192.168.1.3
 PC-01> ping 192.168.1.4
 84 bytes from 192.168.1.4 icmp_seq=1 ttl=64 time=18.664 ms
 84 bytes from 192.168.1.4 icmp_seq=2 ttl=64 time=17.266 ms
+```
 
-~~~
+#### PC-02
 
-#### PC-02:
-
-~~~
+``` PC-02
 NAME   IP/MASK              GATEWAY
 PC-02  192.168.1.2/24       192.168.1.254
 
@@ -246,13 +242,11 @@ PC-02> ping 192.168.1.3
 PC-02> ping 192.168.1.4
 84 bytes from 192.168.1.4 icmp_seq=1 ttl=64 time=23.631 ms
 84 bytes from 192.168.1.4 icmp_seq=2 ttl=64 time=23.613 ms
-~~~
+```
 
+#### PC-03/04
 
-
-#### PC-03/04:
-
-~~~
+``` PC-03
 NAME   IP/MASK              GATEWAY
 PC-03  192.168.1.3/24       192.168.1.254
 
@@ -268,13 +262,11 @@ PC-03> ping 192.168.1.2
 PC-03> ping 192.168.1.4
 84 bytes from 192.168.1.4 icmp_seq=1 ttl=64 time=7.132 ms
 84 bytes from 192.168.1.4 icmp_seq=2 ttl=64 time=4.909 ms
-~~~
-
-
+```
 
 ### Пример команды sh bgp evpn с одного из лифов
 
-~~~
+``` Leaf-03
 Leaf-03#sh bgp evpn
 BGP routing table information for VRF default
 Router identifier 10.203.1.1, local AS number 65003
@@ -306,5 +298,4 @@ AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Li
                                  10.202.1.1            -       100     0       65000 65002 i
  * >      RD: 65003:10001 imet 10.203.1.1
                                  -                     -       -       0       i
-~~~
-
+```
