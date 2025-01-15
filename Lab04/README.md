@@ -1,4 +1,4 @@
-# Проектирование адресного пространства
+# Настройка BGP в Underlay
 
 ## Цели работ
 
@@ -21,6 +21,7 @@
 <summary>Spine's</summary>
 <br>
 router bgp 65099<br>
+   maximum-paths 4 ecmp 64<br>
    neighbor LEAF_GROUP peer group<br>
    neighbor LEAF_GROUP remote-as 65099<br>
    neighbor LEAF_GROUP next-hop-self<br>
@@ -36,10 +37,12 @@ router bgp 65099<br>
 Где X номер Spine коммутатора в схеме <br>
 </details>
 
+
 <details>
 <summary>Leaf's</summary>
 <br>
 router bgp 65099 <br>
+   maximum-paths 4 ecmp 64 <br>
    neighbor SPINE_GROUP peer group <br>
    neighbor SPINE_GROUP remote-as 65099 <br>
    neighbor SPINE_GROUP bfd <br>
