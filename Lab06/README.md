@@ -133,15 +133,10 @@ router bgp 65099 <br>
 
 ```vxlan
 interface Vxlan1
-
    vxlan source-interface Loopback1
-
    vxlan udp-port 4789
-
    vxlan vlan 1001 vni 10001
-
    vxlan vlan 1002 vni 10002
-
    vxlan learn-restrict any
 ```
 
