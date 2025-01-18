@@ -131,6 +131,7 @@ router bgp 65099 <br>
 
 ### Настройка VXLAN интерфейса на Leaf
 
+```vxlan
 interface Vxlan1
 
    vxlan source-interface Loopback1
@@ -142,6 +143,7 @@ interface Vxlan1
    vxlan vlan 1002 vni 10002
 
    vxlan learn-restrict any
+```
 
 ### Таблица VLAN и VNI
 
