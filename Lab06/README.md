@@ -115,7 +115,7 @@ router bgp 65099 <br>
       rd auto<br>
       route-target both 1001:10001<br>
       redistribute learned<br>
-   !
+   !<br>
    vlan 1002<br>
       rd auto<br>
       route-target both 1002:10002<br>
@@ -128,7 +128,6 @@ router bgp 65099 <br>
       network 10.20Y.1.1/32<br><br>
     Где Y номер Leaf в схеме<br>
 </details>
-
 
 ### Настройка VXLAN интерфейса на Leaf
 
@@ -163,8 +162,6 @@ interface Vlan1002
    ip address virtual 192.168.2.254/24
 ```
 
-
-
 ### Настройки интерфейсов на Leaf
 
 | Leaf    | Interface | Vlan | Номер PC |
@@ -174,13 +171,11 @@ interface Vlan1002
 | Leaf-03 | Ethernet1 | 1001 | PC-03    |
 | Leaf-03 | Ethernet2 | 1002 | PC-04    |
 
-
-
 ### Настройка AnyCastGateway
 
-##### ip virtual-router mac-address 00:00:00:01:00:00
-
-
+```Virtual-mac
+ip virtual-router mac-address 00:00:00:01:00:00
+```
 
 ### BGP EVPN связность
 
@@ -323,8 +318,6 @@ AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Li
                                  10.203.1.1            -       100     0       65000 65003 i
 ```
 
-
-
 #### PC-03->04
 
 ``` PC-03
@@ -352,4 +345,3 @@ PC-04> ping 192.168.1.3
 84 bytes from 192.168.1.3 icmp_seq=3 ttl=63 time=6.848 ms
 84 bytes from 192.168.1.3 icmp_seq=4 ttl=63 time=14.550 ms
 ```
-
