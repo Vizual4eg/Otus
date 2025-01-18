@@ -1,4 +1,4 @@
-# Проектирование адресного пространства
+# VxLAN. L3VNI
 
 ## Цели работ
 
@@ -129,7 +129,7 @@ router bgp 65099 <br>
     Где Y номер Leaf в схеме<br>
 </details>
 
-### Настройка VXLAN интерфейса на Leaf
+### xxxxxxxxxx Leaf-0Y#sh ip bgp summaryBGP summary information for VRF defaultRouter identifier 10.201.1.1, local AS number 65099Neighbor Status Codes: m - Under maintenance  Neighbor         V  AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc  10.11.Y.1        4  65099            212       194    0    0 00:50:14 Estab   3      3  10.12.Y.1        4  65099             54        52    0    0 00:47:54 Estab   3      3  Leaf-01#sh bfd peersVRF name: default-----------------DstAddr        MyDisc    YourDisc  Interface/Transport    Type          LastUp---------- ----------- ----------- -------------------- ------- ---------------10.11.Y.1  3196169754  3574109738        Ethernet7(21)  normal  01/15/25 10:3810.12.Y.1   359779152  3157275367        Ethernet8(22)  normal  01/15/25 12:16​Leaf-0Y#sh ip route bgp B I      10.11.255.1/32 [200/0] via 10.11.Y.1, Ethernet7 B I      10.12.255.1/32 [200/0] via 10.12.Y.1, Ethernet8 B I      10.22.255.1/32 [200/0] via 10.11.Y.1, Ethernet7 B I      10.23.255.1/32 [200/0] via 10.11.Y.1, Ethernet7​### LOOPBACK PING ###### Leaf-01Leaf-0Y#ping 10.21.255.1 source lo0 repeat 1PING 10.21.255.1 (10.21.255.1) from 10.22.255.1 : 72(100) bytes of data.80 bytes from 10.21.255.1: icmp_seq=1 ttl=63 time=8.25 ms--- 10.21.255.1 ping statistics ---1 packets transmitted, 1 received, 0% packet loss, time 0msrtt min/avg/max/mdev = 8.252/8.252/8.252/0.000 ms​### Leaf-02Leaf-0Y#ping 10.22.255.1 source lo0 repeat 1PING 10.22.255.1 (10.22.255.1) from 10.22.255.1 : 72(100) bytes of data.80 bytes from 10.22.255.1: icmp_seq=1 ttl=64 time=0.055 ms--- 10.22.255.1 ping statistics ---1 packets transmitted, 1 received, 0% packet loss, time 0msrtt min/avg/max/mdev = 0.055/0.055/0.055/0.000 ms​### Leaf-03Leaf-0Y#ping 10.23.255.1 source lo0 repeat 1PING 10.23.255.1 (10.23.255.1) from 10.22.255.1 : 72(100) bytes of data.80 bytes from 10.23.255.1: icmp_seq=1 ttl=63 time=11.9 ms--- 10.23.255.1 ping statistics ---1 packets transmitted, 1 received, 0% packet loss, time 0msrtt min/avg/max/mdev = 11.984/11.984/11.984/0.000 ms​### Spine-01Leaf-0Y#ping 10.11.255.1 source lo0 repeat 1PING 10.11.255.1 (10.11.255.1) from 10.22.255.1 : 72(100) bytes of data.80 bytes from 10.11.255.1: icmp_seq=1 ttl=64 time=3.86 ms--- 10.11.255.1 ping statistics ---1 packets transmitted, 1 received, 0% packet loss, time 0msrtt min/avg/max/mdev = 3.861/3.861/3.861/0.000 ms​### Spine-02Leaf-0Y#ping 10.12.255.1 source lo0 repeat 1PING 10.12.255.1 (10.12.255.1) from 10.22.255.1 : 72(100) bytes of data.80 bytes from 10.12.255.1: icmp_seq=1 ttl=64 time=5.75 ms--- 10.12.255.1 ping statistics ---1 packets transmitted, 1 received, 0% packet loss, time 0msrtt min/avg/max/mdev = 5.756/5.756/5.756/0.000 msLeaf's
 
 ```vxlan
 interface Vxlan1
