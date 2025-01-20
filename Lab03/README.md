@@ -1,4 +1,4 @@
-# Настройка ISIS  в Underlay
+# Настройка ISIS в Underlay
 
 ## Цели работ
 

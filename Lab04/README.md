@@ -37,7 +37,6 @@ router bgp 65099<br>
 Где X номер Spine коммутатора в схеме <br>
 </details>
 
-
 <details>
 <summary>Leaf's</summary>
 <br>

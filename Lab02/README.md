@@ -1,4 +1,4 @@
-# Настройка OSPF  в Underlay
+# Настройка OSPF в Underlay
 
 ## Цели работ
 
